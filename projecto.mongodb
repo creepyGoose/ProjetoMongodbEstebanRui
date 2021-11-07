@@ -1,0 +1,46 @@
+show dbs
+
+//criacion de dados
+db.createCollection('filmes')
+
+show collections
+
+//insertando datos 
+
+db.filmes.insertMany ([
+    {NOME:"Duna", DIRETOR: "Denis Villeuneve", ELENCO: "Timothée Chalamet, Rebecca Ferguson, Zendaya", ANO: "2021", PREMIOS: "0"},
+
+{
+    NOME:"Central do Brasil", DIRETOR: "Walter Salles", ELENCO: "FernandaMontenegro, Vinicius de Oliveira", ANO: "1998", PREMIOS: "20"
+},
+
+{
+    NOME:"Cidade dos Sonhos", DIRETOR: "David Lynch", ELENCO: "Naomi Watts, Laura, Elena Harring", ANO: "2001", PREMIOS: "18"
+    
+},
+
+{
+    NOME:"King Kong", DIRETOR: "Peter Jackson", ELENCO: "Naomi Watts, Jack, Black, Adrien Brody", ANO: "2005", PREMIOS: "10"
+},
+
+{
+    NOME:"Bela Vingança", DIRETOR: "Emerald Fennel", ELENCO: "Carey Mulligan, Bo Burnham", ANO: "2020", PREMIOS: "22"
+},
+
+{
+    NOME:"SDA: A Sociedade do Anel", DIRETOR: "Peter Jackson", ELENCO: "Elijah Wood, Ian, McKellen, Liv Tyler", ANO: "2001", PREMIOS: "15"
+},
+
+{
+    NOME:"Shrek", DIRETOR: "Andrew Adamson, Vicky Jenson", ELENCO: "Mike Myers, Eddie Murphy, Cameron Diaz", ANO: "2001", PREMIOS: "10"
+},
+{
+    NOME:"Cidade de Deus",DIRETOR:"Fernando Meirelles, Kátia Luind",ELENCO:"Alexandre Rodrigues, Leandro Firmino da Hora",ANO:"2002",PREMIOS:"15"
+},
+
+{
+    NOME:"Pânico",DIRETOR:"Wes Craven",ELENCO:"Neve Campbell,CourtneyCox,David Arquette",ANO: "1996",PREMIO:"6"
+},
+]);
+
+db.filmes.find()
