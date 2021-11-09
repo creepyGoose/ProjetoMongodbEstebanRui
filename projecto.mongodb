@@ -46,11 +46,19 @@ db.filmes.find({$and: [{ano: {$gt:"1994"}}, {ano: {$lt:"2004"}}]})
 
 
 //3 - Busque filmes de 2001 ou que comecem com a letra D.
+use("filmes")
+db.filmes.find({nome:{$regex:"^D"}})
+
+
+
+use("filmes")
+db.filmes.find({nome:/^D/})
 
 
 //4 - Busque filmes lançados dirigidos pelo Peter Jackson ou pelo Walter Salles usando $in.
 
-
+use("filmes")
+db.filmes.find({ "diretor": { $in: ["Peter Jackson", "Walter Salles"] }})
 
 //5 - Busque filmes lançados entre 2002 e 2021 e que contenham as atrizes Naomi Watts ou Carey Mulligan.
 
@@ -84,7 +92,8 @@ db.filmes.createIndex({"ano" : 1})
 
 //11 - Some os prêmios de todos os filmes.
 
-
+use("filmes")
+db.filmes.find({cast: "premios"})
 
 
 //12 - Na coleção `sample_mflix` do Mongo Atlas DB, crie uma consulta que retorne os filmes com os seus comentários utilizando o estágio de agrupamento (e.g.: `$lookup`).
