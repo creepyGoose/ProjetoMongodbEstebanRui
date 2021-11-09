@@ -1,46 +1,90 @@
 show dbs
 
-//criacion de dados
-db.createCollection('filmes')
+use("filmes")
+db.filmes.find()
 
+//criacion coleccion
+db.createCollection('filmes')
 show collections
 
-//insertando datos 
+// 1 - Crie uma coleção chamada Filmes que contenha os seguintes campos: Nome, Diretor, Elenco, Ano, Prêmios
 
+
+use("filmes")
+db.filmes.insertOne({nome:"Duna", diretor: "Denis Villeuneve", elenco: "Timothée Chalamet, Rebecca Ferguson, Zendaya", ano: "2021", premios: "0"})
+
+// insertmmany varios dados--
+
+use("filmes")
 db.filmes.insertMany ([
-    {NOME:"Duna", DIRETOR: "Denis Villeuneve", ELENCO: "Timothée Chalamet, Rebecca Ferguson, Zendaya", ANO: "2021", PREMIOS: "0"},
+   
+{nome: "Central do Brasil", diretor: "Walter Salles", elenco: "Fernanda Montenegro, Vinicius de Oliveira", ano: "1998", premios: "20"},
 
-{
-    NOME:"Central do Brasil", DIRETOR: "Walter Salles", ELENCO: "FernandaMontenegro, Vinicius de Oliveira", ANO: "1998", PREMIOS: "20"
-},
+{nome: "Cidade dos Sonhos", diretor: "David Lynch", elenco: "Naomi Watts, Laura Elena Harring", ano: "2001", premios: "18" },
 
-{
-    NOME:"Cidade dos Sonhos", DIRETOR: "David Lynch", ELENCO: "Naomi Watts, Laura, Elena Harring", ANO: "2001", PREMIOS: "18"
-    
-},
+{nome: "King Kong", diretor: "Peter Jackson", elenco: "Naomi Watts, Jack Black, Adrien Brody", ano: "2005", premios: "10"},
 
-{
-    NOME:"King Kong", DIRETOR: "Peter Jackson", ELENCO: "Naomi Watts, Jack, Black, Adrien Brody", ANO: "2005", PREMIOS: "10"
-},
+{ nome: "Bela Vingança", diretor: "Emerald Fennel", elenco: "Carey Mulligan, Bo Burnham", ano: "2020", premios: "22"},
 
-{
-    NOME:"Bela Vingança", DIRETOR: "Emerald Fennel", ELENCO: "Carey Mulligan, Bo Burnham", ANO: "2020", PREMIOS: "22"
-},
+{nome: "SDA: A Sociedade do Anel", diretor: "Peter Jackson", elenco: "Elijah Wood, Ian McKellen, Liv Tyler", ano: "2001", premios: "15"},
 
-{
-    NOME:"SDA: A Sociedade do Anel", DIRETOR: "Peter Jackson", ELENCO: "Elijah Wood, Ian, McKellen, Liv Tyler", ANO: "2001", PREMIOS: "15"
-},
+{nome: "Shrek", diretor: "Andrew Adamson, Vicky Jenson", elenco: "Mike Myers, Eddie Murphy, Cameron Diaz", ano: "2001", premios: "10"},
 
-{
-    NOME:"Shrek", DIRETOR: "Andrew Adamson, Vicky Jenson", ELENCO: "Mike Myers, Eddie Murphy, Cameron Diaz", ANO: "2001", PREMIOS: "10"
-},
-{
-    NOME:"Cidade de Deus",DIRETOR:"Fernando Meirelles, Kátia Luind",ELENCO:"Alexandre Rodrigues, Leandro Firmino da Hora",ANO:"2002",PREMIOS:"15"
-},
+{nome: "Cidade de Deus", diretor:"Fernando Meirelles, Kátia Luind", elenco:"Alexandre Rodrigues, Leandro Firmino da Hora", ano:"2002", premios:"15"},
 
-{
-    NOME:"Pânico",DIRETOR:"Wes Craven",ELENCO:"Neve Campbell,CourtneyCox,David Arquette",ANO: "1996",PREMIO:"6"
-},
-]);
+{nome: "Pânico", diretor: "Wes Craven", elenco: "Neve Campbell, CourtneyCox, David Arquette",ano: "1996", premios:"6"},]);
 
-db.filmes.find()
+//consulta
+use("filmes")
+db.filmes.find().pretty()
+
+
+//2 - Busque filmes lançados entre 1997 e 2004.
+
+use("filmes")
+db.filmes.find({$and: [{ano: {$gt:"1994"}}, {ano: {$lt:"2004"}}]})
+
+
+//3 - Busque filmes de 2001 ou que comecem com a letra D.
+
+
+//4 - Busque filmes lançados dirigidos pelo Peter Jackson ou pelo Walter Salles usando $in.
+
+
+
+//5 - Busque filmes lançados entre 2002 e 2021 e que contenham as atrizes Naomi Watts ou Carey Mulligan.
+
+
+
+
+//6 - Busque todos os filmes que não sejam entre 2001 e 2005.
+
+
+
+
+//7 - Conte quantos filmes foram lançados em 2001.
+use("filmes")
+db.filmes.count({ ano: "2001"});
+
+//8 - Selecione apenas o elenco numa distinct.
+
+use("filmes")
+db.filmes.distinct( "elenco" )
+
+//9- Selecione os filmes lançados em 2001, apresentando seu nome e diretor apenas, em ordem decrescente,limitando a dois resultados.
+
+
+
+
+//10 - Crie uma index usando o ano como referência.
+
+use("filmes")
+db.filmes.createIndex({"ano" : 1})
+
+
+//11 - Some os prêmios de todos os filmes.
+
+
+
+
+//12 - Na coleção `sample_mflix` do Mongo Atlas DB, crie uma consulta que retorne os filmes com os seus comentários utilizando o estágio de agrupamento (e.g.: `$lookup`).
