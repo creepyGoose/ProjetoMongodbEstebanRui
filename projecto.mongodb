@@ -77,7 +77,7 @@ db.filmes.find({ano:{$not:{$gte:"2001",$lte:"2005"}}}).sort({ano: 1})
 
 //7 - Conte quantos filmes foram lançados em 2001.
 use("filmes")
-db.filmes.count({ ano: "2001"});
+db.filmes.count({ ano: "2001"})
 
 //8 - Selecione apenas o elenco numa distinct.
 
@@ -95,6 +95,9 @@ db.filmes.find({},{ano:"2001",diretor:1, nome:1}).limit(2).sort({nome:-1})
 
 use("filmes")
 db.filmes.createIndex({"ano" : 1})
+
+use("filmes")
+db.filmes.getIndexes()
 
 
 //11 - Some os prêmios de todos os filmes.
