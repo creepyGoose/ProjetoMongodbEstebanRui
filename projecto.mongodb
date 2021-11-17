@@ -43,7 +43,7 @@ db.filmes.find().pretty()
 //2 - Busque filmes lançados entre 1997 e 2004.
 
 use("filmes")
-db.filmes.find({$and: [{ano: {$gt:"1994"}}, {ano: {$lt:"2004"}}]})
+db.filmes.find({$and: [{ano: {$gt:"1994"}}, {ano: {$lt:"2004"}}]}) // se é um intervalo deve-se usar maior/menor e igual
 
 
 //3 - Busque filmes de 2001 ou que comecem com a letra D.
@@ -63,7 +63,7 @@ db.filmes.find({ "diretor": { $in: ["Peter Jackson", "Walter Salles"] }})
 use("filmes")
 db.filmes.find({
     $and: [
-        { $or: [{ano:{$gte: "2002"}}, {ano:{$lte: "2021"}}] },
+        { $or: [{ano:{$gte: "2002"}}, {ano:{$lte: "2021"}}] }, // esta pegando filmes que são a partir de 2002 OU menor que 2021, sendo que deve ser um intervalo. O filme "Cidade dos Sonhos" não pode aparecer
         { $or: [{elenco:{$eq: "Naomi Watts"}}, {elenco:{$eq: "Carey Mulligan"}}]}     
     ]
 })
@@ -88,7 +88,7 @@ db.filmes.distinct( "elenco" )
 //9- Selecione os filmes lançados em 2001, apresentando seu nome e diretor apenas, em ordem decrescente,limitando a dois resultados.
 
 use("filmes")
-db.filmes.find({},{ano:"2001",diretor:1, nome:1}).limit(2).sort({nome:-1})
+db.filmes.find({},{ano:"2001",diretor:1, nome:1}).limit(2).sort({nome:-1}) // foi pedido para mostrar apenas os campos nome e diretor
 
 
 //10 - Crie uma index usando o ano como referência.
@@ -117,6 +117,6 @@ db.comments.aggregate([
     foreignField:"_id",
     as:"movies"}
   }
-])
+]) // Consulta usando campos com nomes errados pois estamos usando outra coleção
 
 
